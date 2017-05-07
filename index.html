@@ -1,0 +1,215 @@
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--[if IE 8]> <html lang="en-us" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-us"> <!--<![endif]-->
+<head>
+<title>eBillett: </title>
+
+
+    <meta name="GENERATOR" content="DXeGenerator, (c) Dialog.eXe as 2002">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="msapplication-config" content="none"/>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <!--[if IE]>
+        <link rel="stylesheet" href="styles/ie.css">
+        <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="styles/fonts.css">
+	<link rel="stylesheet" type="text/css" href="styles/paver.min.css">
+
+</head>
+<body>
+
+
+
+      <div class="header-bar">
+
+          <div class="header-bar-logo"></div>
+
+
+      </div>
+
+
+
+	  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+		  <script type="text/javascript" src="javascripts/jquery.imagemapster.beta.js"></script>
+		  <script type="text/javascript" src="javascripts/jquery.throttleDebounce.min.js"></script>
+		   <script type="text/javascript" src="javascripts/jquery.paver.js"></script>
+  	<input type="hidden" name="action" value="continue">
+  	<input type="hidden" name="partner_id" value="{$partner_id}">
+
+  		<script type="text/javascript">
+
+  			function loadVelgAntall(arrnr, frs_id, p_id, presale) {
+  				document.location = "velg_antall.php?p_id=" + p_id + "&frs_id=" + frs_id + "&arrnr=" + arrnr + presale + "{$returnUrlString}" + "{$campaignIdString}";
+  			}
+  			if(window.name == 'MyWindow') {
+  		        window.resizeTo(1024,768);
+  		    }
+  		</script>
+
+	<style type="text/css">
+		body {
+			background: #000;
+
+		}
+		.panorama {
+			overflow-x: scroll;
+			overflow-y: hidden;
+		}
+
+		.panorama img {
+			height: 100%;
+		}
+
+		/*#mapster_wrap_0 {
+			position: absolute !important;
+		}
+
+		.mapster_el {
+			opacity: 0 !important;
+		}*/
+
+		.section-selector {
+			width: 150px;
+			padding: 10px;
+			background: #fff;
+			z-index: 9999999999;
+			position: absolute;
+			display: none;
+			border-radius: 6px;
+		}
+
+		.section-selector h3 {
+			font-weight: 700;
+			margin: 3px;
+		}
+
+		.section-selector-availability {
+			margin: 3px 3px 7px 3px;
+			font-size: 14px;
+		}
+
+		.section-selector-indicator {
+			width: 20px;
+			height: 20px;
+			margin-bottom: -5px;
+			margin-right: 7px;
+			background: rgb(255, 189, 43);
+			display: inline-block;
+			border-radius: 4px;
+		}
+
+		.section-selector a {
+			display: block;
+			width: 100%;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			text-decoration: none;
+			text-align: center;
+			border-radius: 4px;
+		}
+
+	</style>
+
+
+	<div class="section-selector">
+		<h3>Balkong 2</h3>
+		<div class="section-selector-availability">
+			<div class="section-selector-indicator"></div> 14 ledige
+		</div>
+		<a href="#" class="btn green">Kj&oslash;p billett</a>
+
+		<div class="section-selector-arrow"></div>
+	</div>
+
+
+	<!-- <img src="/customerfiles/144/images/Stormen_storesal.jpg" alt="salkart" id="salkartImage" usemap="#salkartmap" border="0" style="position:absolute;opacity:0;z-index:9999999;" height="0" width="0"> -->
+	<div class="panorama">
+  		<img src="velg_seksjon_fullscreen_image.jpg" alt="salkart" id="salkartImage" usemap="#salkartmap" border="0" height="100%" width="auto">
+	</div>
+
+
+
+  	<map id="salkart" name="salkartmap">
+  		<!--BeginMapArea-->
+  		<!-- {foreach $lines as $line}
+  		<area href="#" shape="poly" data-arrnr="{$line['arrnr']}{$line['frs_id']}" coords="{$line['coords']}"
+  		      onclick="loadVelgAntall({$line['arrnr']}, {$line['frs_id']}, {$line['p_id']}, '{$presale_id}')"></area>
+  		{/foreach} -->
+		<area href="#" shape="poly" data-arrnr="1333" coords="0,0,507,0,1670,423,4027,423,5267,0,5758,0,5758,210,4001,901,1677,901,0,269" onclick="sectionClicked()"></area>
+
+  		<!--EndMapArea-->
+  	</map>
+
+  	<script type="text/javascript">
+			var movementArray = [];
+  			$(document).ready(function(){
+				$(".panorama").css('height', $(window).height()-50);
+
+				$('div.panorama').paver({
+				    mouseSmoothingFunction: 'linear',
+				    tiltSmoothingFunction:  'gaussian'
+				});
+				setTimeout(function(){
+					$('#salkartImage').mapster({
+						mapKey: 'data-arrnr',
+						fillColor: 'dddddd',
+						fadeDuration: 150,
+						fillOpacity: 0.3,
+						scaleMap: true,
+						wrapClass: "paver__pano"
+					});
+				}, 200);
+
+				$('div.panorama').mousemove(function(e){
+					movementArray['x'] = e.pageX;
+					movementArray['y'] = e.pageY;
+				});
+
+				$('div.panorama').on('computeEnd.paver', function(){
+					console.log('Gogo');
+					// $("#salkartImage").css('height', $(".paver__pano").height());
+					// $("#salkartImage").css('width', $(".paver__pano").width());
+
+					// setTimeout(function(){
+
+
+						// $("#mapster_wrap_0").on("mousemove", function(handler){
+						// 		$('div.panorama').trigger("mousemove.paver", handler);
+						// });
+					// },3000);
+
+				});
+
+
+
+  			});
+
+
+
+			function sectionClicked(e){
+				console.log(movementArray);
+				$(".section-selector").css({top: movementArray['y'], left: movementArray['x']}).fadeIn();
+				setTimeout(function(){
+					$(".section-selector").fadeOut();
+				}, 5000);
+			}
+  	</script>
+
+
+
+
+
+
+
+</body>
+</html>
