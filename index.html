@@ -158,7 +158,8 @@
 				$('div.panorama').paver({
 				    mouseSmoothingFunction: 'gaussian',
 				    tiltSmoothingFunction:  'gaussian',
-                    tilt: false
+                    tilt: true,
+                    tiltSensitivity: 0.8
 				});
 				setTimeout(function(){
 					$('#salkartImage').mapster({
