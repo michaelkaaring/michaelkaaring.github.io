@@ -156,8 +156,8 @@
 				$(".panorama").css('height', $(window).height()-50);
 
 				$('div.panorama').paver({
-				    // mouseSmoothingFunction: 'linear',
-				    // tiltSmoothingFunction:  'gaussian',
+				    mouseSmoothingFunction: 'gaussian',
+				    tiltSmoothingFunction:  'gaussian',
                     tilt: false
 				});
 				setTimeout(function(){
