@@ -17,7 +17,7 @@
     <meta name="msapplication-config" content="none"/>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.less">
     <!--[if IE]>
         <link rel="stylesheet" href="styles/ie.css">
         <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -118,6 +118,19 @@
 			border-radius: 4px;
 		}
 
+		.section-text {
+			position: absolute;
+			color: #fff;
+			font-size: 18px;
+			font-weight: 400;
+			text-align: center;
+			margin: 30px auto;
+			width: 300px;
+			left: 0;
+			right: 0;
+			z-index: 3;
+		}
+
 	</style>
 
 
@@ -131,10 +144,15 @@
 		<div class="section-selector-arrow"></div>
 	</div>
 
+	<div class="section-text">
+		Trykk p&aring; seksjonen du vil sitte p&aring;<br />
+		<i class="fa fa-arrow-down"></i>
+	</div>
+
 
 	<!-- <img src="/customerfiles/144/images/Stormen_storesal.jpg" alt="salkart" id="salkartImage" usemap="#salkartmap" border="0" style="position:absolute;opacity:0;z-index:9999999;" height="0" width="0"> -->
 	<div class="panorama">
-  		<img src="velg_seksjon_fullscreen_image.jpg" alt="salkart" id="salkartImage" usemap="#salkartmap" border="0" height="100%" width="auto">
+		<img src="velg_seksjon_fullscreen_image.jpg" alt="salkart" id="salkartImage" usemap="#salkartmap" border="0" height="100%" width="auto">
 	</div>
 
 
@@ -156,12 +174,11 @@
 				$(".panorama").css('height', $(window).height()-50);
 
 				$('div.panorama').paver({
-				    mouseSmoothingFunction: 'gaussian',
-				    tiltSmoothingFunction:  'gaussian',
-                    tilt: false,
-                    cursorThrottle: 200,
-                    grain: 1
-
+					mouseSmoothingFunction: 'gaussian',
+					tiltSmoothingFunction:  'gaussian',
+					tilt: false,
+					cursorThrottle: 200,
+					grain: 1
 				});
 				setTimeout(function(){
 					$('#salkartImage').mapster({
@@ -170,13 +187,31 @@
 						fadeDuration: 150,
 						fillOpacity: 0.3,
 						scaleMap: true,
-						wrapClass: "paver__pano"
+						isSelectable: false,
+						wrapClass: "paver__pano",
+						onMouseover: function(e){
+							console.log(e);
+
+						}
 					});
 				}, 200);
 
-				$('div.panorama').mousemove(function(e){
-					movementArray['x'] = e.pageX;
-					movementArray['y'] = e.pageY;
+				$(document).mousemove(function(e){
+					movementArray['x'] = e.pageX-($(".section-selector").width()/2);
+					movementArray['y'] = e.pageY-($(".section-selector").height()+30);
+					//$("div.panorama").trigger('mousemove.paver', e);
+
+				});
+
+				// $("#salkartImage").on('mousemove', function(e){
+				// 		console.log(e);
+				// });
+
+
+
+
+				$('div.panorama').on('mousemove.paver', function(e){
+						console.log(e);
 				});
 
 				$('div.panorama').on('computeEnd.paver', function(){

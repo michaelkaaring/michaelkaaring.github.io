@@ -547,7 +547,7 @@
 			},
 			// Bind evens when mousemove is fired
 			bindMouseEvents: function(paver) {
-				paver.$t.on('mousemove.paver', $.throttle(paver.settings.cursorThrottle, function(e) {
+				$(document).on('mousemove.paver', $.throttle(paver.settings.cursorThrottle, function(e) {
 					// Update exposed mouse coordinates
 					paver.mousemove.dX = (e.pageX - paver.instanceData.offsetX) - paver.instanceData.centerX;
 					paver.mousemove.dY = (e.pageY - paver.instanceData.offsetY) - paver.instanceData.centerY;
