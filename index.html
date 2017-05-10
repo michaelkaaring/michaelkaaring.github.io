@@ -177,24 +177,10 @@
 					mouseSmoothingFunction: 'gaussian',
 					tiltSmoothingFunction:  'gaussian',
 					tilt: false,
-					cursorThrottle: 200,
-					grain: 1
+					cursorThrottle: 200, // need mobile only code
+					grain: 1	//need mobile only code
 				});
-				setTimeout(function(){
-					$('#salkartImage').mapster({
-						mapKey: 'data-arrnr',
-						fillColor: 'dddddd',
-						fadeDuration: 150,
-						fillOpacity: 0.3,
-						scaleMap: true,
-						isSelectable: false,
-						wrapClass: "paver__pano",
-						onMouseover: function(e){
-							console.log(e);
 
-						}
-					});
-				}, 200);
 
 				$(document).mousemove(function(e){
 					movementArray['x'] = e.pageX-($(".section-selector").width()/2);
@@ -210,18 +196,31 @@
 
 
 
-				$('div.panorama').on('mousemove.paver', function(e){
-						console.log(e);
-				});
+				// $('div.panorama').on('mousemove.paver', function(e){
+				// 		console.log(e);
+				// });
 
-				$('div.panorama').on('computeEnd.paver', function(){
+				$('div.panorama').on('ready.paver', function(){
 					console.log('Gogo');
 					// $("#salkartImage").css('height', $(".paver__pano").height());
 					// $("#salkartImage").css('width', $(".paver__pano").width());
 
 					// setTimeout(function(){
 
-
+					setTimeout(function(){
+						$('#salkartImage').mapster({
+							mapKey: 'data-arrnr',
+							fillColor: 'dddddd',
+							fadeDuration: 150,
+							fillOpacity: 0.3,
+							scaleMap: true,
+							isSelectable: false,
+							wrapClass: "paver__pano",
+							onMouseover: function(e){
+								console.log(e);
+							}
+						});
+					}, 200);
 						// $("#mapster_wrap_0").on("mousemove", function(handler){
 						// 		$('div.panorama').trigger("mousemove.paver", handler);
 						// });
@@ -237,11 +236,24 @@
 
 			function sectionClicked(e){
 				console.log(movementArray);
-				$(".section-selector").css({top: movementArray['y'], left: movementArray['x']}).fadeIn();
+				displaySectionInfo(movementArray['x'], movementArray['y']);
+			}
+
+			function displaySectionInfo(x, y){
+				if (x < 150){
+					x = x+50;
+				}
+				if (y < 150){
+					y = y+50;
+				}
+
+				$(".section-selector").css({top: y, left: x}).fadeIn();
 				setTimeout(function(){
 					$(".section-selector").fadeOut();
 				}, 5000);
 			}
+
+
   	</script>
 
 
