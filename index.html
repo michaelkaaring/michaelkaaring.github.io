@@ -228,6 +228,35 @@
 
 				});
 
+				$('div.panorama').on('fallbackend.paver', function(){
+					console.log('Gogo');
+					// $("#salkartImage").css('height', $(".paver__pano").height());
+					// $("#salkartImage").css('width', $(".paver__pano").width());
+
+					// setTimeout(function(){
+
+					setTimeout(function(){
+						$('#salkartImage').mapster({
+							mapKey: 'data-arrnr',
+							fillColor: 'dddddd',
+							fadeDuration: 150,
+							fillOpacity: 0.3,
+							scaleMap: true,
+							isSelectable: false,
+							wrapClass: "paver__pano",
+							isTouch: false,
+							onMouseover: function(e){
+								console.log(e);
+							}
+						});
+					}, 200);
+						// $("#mapster_wrap_0").on("mousemove", function(handler){
+						// 		$('div.panorama').trigger("mousemove.paver", handler);
+						// });
+					// },3000);
+
+				});
+
 
 
   			});
